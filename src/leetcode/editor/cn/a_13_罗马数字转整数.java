@@ -1,4 +1,4 @@
-package leetcode.editor.cn;//罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
+//罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
 //
 // 字符          数值
 //I             1
@@ -63,55 +63,58 @@ package leetcode.editor.cn;//罗马数字包含以下七种字符: I， V， X�
 // 关于罗马数字的详尽书写规则，可以参考 罗马数字 - Mathematics 。 
 // 
 // Related Topics 数学 字符串 
-// 👍 1089 👎 0
+// 👍 1090 👎 0
 
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int romanToInt(String s) {
-        char[] chars = s.toCharArray();
+package leetcode.editor.cn;
 
-        //第一位手动添加
-        int sum = valueof(chars[chars.length - 1]);
+public class a_13_罗马数字转整数 {
+    public static void main(String[] args) {
+        Solution solution = new a_13_罗马数字转整数().new Solution();
+    }
 
-        for (int i = chars.length - 1; i >= 1; i--) {
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int romanToInt(String s) {
+            char[] chars = s.toCharArray();
 
-            int a = valueof(chars[i]);
-            int b = valueof(chars[i - 1]);
-            if (a > b) {
-                sum -= b;
-            } else {
-                sum += b;
+            //第一位手动添加
+            int sum = valueof(chars[chars.length - 1]);
+
+            for (int i = chars.length - 1; i >= 1; i--) {
+
+                int a = valueof(chars[i]);
+                int b = valueof(chars[i - 1]);
+                if (a > b) {
+                    sum -= b;
+                } else {
+                    sum += b;
+                }
+            }
+            return sum;
+        }
+
+        private int valueof(char c) {
+            switch (c) {
+                case 'I':
+                    return 1;
+                case 'V':
+                    return 5;
+                case 'X':
+                    return 10;
+                case 'L':
+                    return 50;
+                case 'C':
+                    return 100;
+                case 'D':
+                    return 500;
+                case 'M':
+                    return 1000;
+                default:
+                    return 0;
             }
         }
-        return sum;
     }
-
-    private int valueof(char c) {
-        switch (c) {
-            case 'I':
-                return 1;
-            case 'V':
-                return 5;
-            case 'X':
-                return 10;
-            case 'L':
-                return 50;
-            case 'C':
-                return 100;
-            case 'D':
-                return 500;
-            case 'M':
-                return 1000;
-            default:
-                return 0;
-        }
-    }
-
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        int iv = solution.romanToInt("IV");
-        System.out.println(iv);
-    }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+
+}

@@ -24,9 +24,9 @@
 
 package leetcode.editor.cn;
 
-public class a_14_最长公共前缀 {
+public class a_14 {
     public static void main(String[] args) {
-        Solution solution = new a_14_最长公共前缀().new Solution();
+        Solution solution = new a_14().new Solution();
         String s = solution.longestCommonPrefix(new String[]{"ab", "a"});
         System.out.println(s);
     }

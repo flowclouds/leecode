@@ -68,9 +68,9 @@
 
 package leetcode.editor.cn;
 
-public class a_13_罗马数字转整数 {
+public class a_13 {
     public static void main(String[] args) {
-        Solution solution = new a_13_罗马数字转整数().new Solution();
+        Solution solution = new a_13().new Solution();
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)

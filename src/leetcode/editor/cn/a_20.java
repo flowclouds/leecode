@@ -45,9 +45,9 @@ package leetcode.editor.cn;
 
 import java.util.Stack;
 
-public class a_20_有效的括号 {
+public class a_20 {
     public static void main(String[] args) {
-        Solution solution = new a_20_有效的括号().new Solution();
+        Solution solution = new a_20().new Solution();
 
         boolean valid = solution.isValid("(){}}{");
         System.out.println(valid);

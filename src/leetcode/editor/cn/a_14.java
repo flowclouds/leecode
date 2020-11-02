@@ -27,7 +27,7 @@ package leetcode.editor.cn;
 public class a_14 {
     public static void main(String[] args) {
         Solution solution = new a_14().new Solution();
-        String s = solution.longestCommonPrefix(new String[]{"ab", "a"});
+        String s = solution.longestCommonPrefix(new String[]{"aaa", "aa", "aaa","aaaaaaa"});
         System.out.println(s);
     }
 
@@ -41,24 +41,20 @@ public class a_14 {
                 return strs[0];
             }
 
-            String res = "";
-            int i = 0;
+            String subString = strs[0];
 
-            while (i < strs[0].length()) {
+            for (int i = 1; i < strs.length; i++) {
                 int j = 0;
-                while (j <= strs.length - 2) {
-                    if (i == strs[j].length() || i == strs[j + 1].length()) {
-                        return res;
-                    }
-                    if (strs[j].charAt(i) != strs[j + 1].charAt(i)) {
-                        return res;
+                while (j < subString.length() && j < strs[i].length()) {
+                    if (subString.charAt(j) != strs[i].charAt(j)) {
+                        break;
                     }
                     j++;
                 }
-                res += strs[0].charAt(i);
-                i++;
+                subString = subString.substring(0, j);
             }
-            return res;
+
+            return subString;
         }
 
     }

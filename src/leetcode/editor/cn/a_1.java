@@ -18,6 +18,7 @@
 package leetcode.editor.cn;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class a_1 {
     public static void main(String[] args) {
@@ -30,21 +31,16 @@ public class a_1 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[] twoSum(int[] nums, int target) {
-            int[] ints = new int[2];
-            for (int i = 0; i < nums.length - 1; i++) {
-                for (int j = 1; j < nums.length; j++) {
-                    if (i == j) {
-                        continue;
-                    }
-                    if (nums[i] + nums[j] == target) {
-                        ints[0] = i;
-                        ints[1] = j;
-                        return ints;
-                    }
-                }
-            }
+            HashMap<Integer, Integer> map = new HashMap<>();
 
-            return ints;
+            for (int i = 0; i < nums.length; i++) {
+                int tmp = target - nums[i];
+                if (map.containsKey(tmp)) {
+                    return new int[]{i, map.get(tmp)};
+                }
+                map.put(nums[i], i);
+            }
+            return null;
 
         }
     }

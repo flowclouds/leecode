@@ -50,8 +50,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.Stack;
-
 public class a_1021 {
     public static void main(String[] args) {
         Solution solution = new a_1021().new Solution();

@@ -48,6 +48,7 @@ public class a_9 {
                     return false;
                 }
             }
+
             return true;
         }
     }

@@ -51,7 +51,7 @@ import java.util.List;
 public class a_39 {
     public static void main(String[] args) {
         Solution solution = new a_39().new Solution();
-        List<List<Integer>> lists = solution.combinationSum(new int[]{2, 3, 5}, 8);
+        List<List<Integer>> lists = solution.combinationSum(new int[]{2}, 8);
         System.out.println(lists);
     }
 
@@ -61,31 +61,26 @@ public class a_39 {
         private final List<List<Integer>> resList = new LinkedList<>();
 
         private void combin(int[] candidates, int index, List<Integer> res, int target) {
-            System.out.println("开始进入");
             int sum = res.stream().mapToInt(a -> a).sum();
 
             if (sum > target) {
-                System.out.println("不满足退出" + "index是:" + index + "\t" + "res是:" + res);
                 return;
             }
 
             if (sum == target) {
                 resList.add(res);
-                System.out.println("满足退出" + "index是:" + index + "\t" + "res是:" + res);
                 return;
             }
 
-            System.out.println("进入循环");
             for (int i = index; i < candidates.length; i++) {
-                System.out.println("进入循环i:" + i);
                 List<Integer> integers = new LinkedList<>(res);
                 integers.add(candidates[i]);
-                System.out.println("integers添加元素:" + candidates[i]);
                 combin(candidates, i, integers, target);
             }
         }
 
         public List<List<Integer>> combinationSum(int[] candidates, int target) {
+            resList.clear();
 
             combin(candidates, 0, new LinkedList<>(), target);
 

@@ -32,11 +32,9 @@
 // Related Topics 数组 回溯算法 
 // 👍 441 👎 0
 
-
 package leetcode.editor.cn;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class a_40 {
     public static void main(String[] args) {
@@ -48,32 +46,40 @@ public class a_40 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
-        List<List<Integer>> resList = new LinkedList<>();
+        Set<List<Integer>> resList = new HashSet<>();
 
-        private void obtain(int[] candidates, List<Integer> res, int index, int target) {
-            int sum = res.stream().mapToInt(a -> a).sum();
+        private void obtain(int[] candidates, List<Integer> res, int index, int target, int sum) {
             if (sum > target) {
                 return;
             }
-            if (target == sum) {
-                resList.add(res);
+            if (sum == target) {
+                resList.add(new LinkedList<>(res));
+                return;
             }
 
             for (int i = index; i < candidates.length; i++) {
-                List<Integer> newRes = new LinkedList<>(res);
-                newRes.add(candidates[i]);
-                obtain(candidates, newRes, index + 1, target);
-            }
 
+                sum += candidates[i];
+
+                res.add(candidates[i]);
+
+                obtain(candidates, res, i + 1, target, sum);
+
+                sum -= candidates[i];
+
+                res.remove(Integer.valueOf(candidates[i]));
+            }
         }
 
         public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+
+            Arrays.sort(candidates);
+
             resList.clear();
 
-            obtain(candidates, new LinkedList<>(), 0, target);
+            obtain(candidates, new LinkedList<>(), 0, target, 0);
 
-            return resList;
-
+            return new LinkedList<>(resList);
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

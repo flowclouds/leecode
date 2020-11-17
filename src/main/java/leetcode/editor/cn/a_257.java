@@ -18,7 +18,6 @@
 // Related Topics 树 深度优先搜索 
 // 👍 398 👎 0
 
-
 package leetcode.editor.cn;
 
 import java.util.LinkedList;
@@ -40,19 +39,19 @@ public class a_257 {
      * }
      */
 
-//    public class TreeNode {
-//        int val;
-//        TreeNode left;
-//        TreeNode right;
-//
-//        TreeNode(int x) {
-//            val = x;
-//        }
-//    }
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
 
     class Solution {
 
-        private LinkedList<String> res = new LinkedList<>();
+        private final LinkedList<String> res = new LinkedList<>();
 
         private void obtain(TreeNode root, LinkedList<Integer> list) {
             if (root == null) return;
@@ -66,7 +65,7 @@ public class a_257 {
                     sb.append(integer);
                     sb.append("->");
                 }
-                sb.delete(sb.length() - 2, sb.length() );
+                sb.delete(sb.length() - 2, sb.length());
                 res.add(sb.toString());
             }
 

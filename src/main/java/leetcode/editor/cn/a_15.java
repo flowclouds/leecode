@@ -29,7 +29,7 @@ import java.util.List;
 public class a_15 {
     public static void main(String[] args) {
         Solution solution = new a_15().new Solution();
-        List<List<Integer>> lists = solution.threeSum(new int[]{0, 0, 0, 0});
+        List<List<Integer>> lists = solution.threeSum(new int[]{1, -1, -1, 0});
         System.out.println(lists);
     }
 
@@ -43,20 +43,27 @@ public class a_15 {
 
             List<List<Integer>> res = new LinkedList<>();
             for (int i = 0; i < nums.length - 2; i++) {
-                //和上次不同
+                if (nums[i] > 0) break;
+                //第一个数和上次不同
                 if (i > 0 && nums[i] == nums[i - 1]) continue;
                 for (int j = i + 1; j < nums.length - 1; j++) {
-                    //和上次不同
+                    if (nums[i] + nums[j] > 0) break;
+                    //第二个数和上次不同
                     if (j > i + 1 && nums[j] == nums[j - 1]) continue;
-                    for (int k = j + 1; k < nums.length; k++) {
-                        if (nums[i] + nums[j] + nums[k] == 0) {
-                            List<Integer> integers = new ArrayList<>();
-                            integers.add(nums[i]);
-                            integers.add(nums[j]);
-                            integers.add(nums[k]);
-                            res.add(integers);
-                            break;
-                        }
+
+                    int k = nums.length - 1;
+
+                    while (j < k && nums[i] + nums[k] + nums[j] > 0) {
+                        k--;
+                    }
+                    if (j == k) break;
+
+                    if (nums[i] + nums[j] + nums[k] == 0) {
+                        List<Integer> integers = new ArrayList<>();
+                        integers.add(nums[i]);
+                        integers.add(nums[j]);
+                        integers.add(nums[k]);
+                        res.add(integers);
                     }
                 }
             }

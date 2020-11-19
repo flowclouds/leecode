@@ -36,10 +36,8 @@ public class a_15 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public List<List<Integer>> threeSum(int[] nums) {
-//[-4, -1, -1, 0, 1, 2]
+            //[-4, -1, -1, 0, 1, 2]
             Arrays.sort(nums);
-
-            System.out.println(Arrays.toString(nums));
 
             List<List<Integer>> res = new LinkedList<>();
             for (int i = 0; i < nums.length - 2; i++) {

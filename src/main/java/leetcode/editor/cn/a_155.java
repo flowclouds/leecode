@@ -39,10 +39,10 @@
 // Related Topics 栈 设计 
 // 👍 719 👎 0
 
-
 package leetcode.editor.cn;
 
-import java.util.Stack;
+import java.util.Deque;
+import java.util.LinkedList;
 
 public class a_155 {
     public static void main(String[] args) {
@@ -51,39 +51,24 @@ public class a_155 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class MinStack {
-        Stack<Integer> stack = new Stack<>();
-        Integer min = null;
+        Deque<Integer> stack = new LinkedList<>();
+        Deque<Integer> minStack = new LinkedList<>();
 
         /**
          * initialize your data structure here.
          */
         public MinStack() {
-
+            minStack.push(Integer.MAX_VALUE);
         }
 
         public void push(int x) {
             stack.push(x);
-
-            if (min == null) {
-                min = x;
-            } else {
-                min = Math.min(min, x);
-            }
+            minStack.push(Math.min(minStack.peek(), x));
         }
 
         public void pop() {
-            Integer pop = stack.pop();
-            if (pop <= min && stack.size() >= 1) {
-                if (stack.size() == 1) {
-                    min = stack.peek();
-                } else {
-                    for (int i = 1; i < stack.size(); i++) {
-                        min = Math.min(stack.get(i - 1), stack.get(i));
-                    }
-                }
-            }
-
-
+            stack.pop();
+            minStack.pop();
         }
 
         public int top() {
@@ -91,7 +76,7 @@ public class a_155 {
         }
 
         public int getMin() {
-            return min;
+            return minStack.peek();
         }
     }
 

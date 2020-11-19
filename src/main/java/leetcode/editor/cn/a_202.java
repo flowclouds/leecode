@@ -20,8 +20,10 @@
 // Related Topics 哈希表 数学 
 // 👍 472 👎 0
 
-
 package leetcode.editor.cn;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class a_202 {
     public static void main(String[] args) {
@@ -35,7 +37,12 @@ public class a_202 {
         public boolean isHappy(int n) {
 
             int sum = n;
+            Set<Integer> integers = new HashSet<>();
             while (sum != 1) {
+                if (integers.contains(sum)) {
+                    return false;
+                }
+                integers.add(sum);
                 String s = String.valueOf(sum);
                 char[] chars = s.toCharArray();
 

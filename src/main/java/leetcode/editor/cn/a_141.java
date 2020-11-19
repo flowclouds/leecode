@@ -87,16 +87,18 @@ public class a_141 {
 
     public class Solution {
         public boolean hasCycle(ListNode head) {
-            HashSet<ListNode> nodes = new HashSet<>();
-            while (head != null) {
-                if (nodes.contains(head)) {
+
+            ListNode fast = head;
+            ListNode slow = head;
+
+            while (fast != null && fast.next != null) {
+                fast = fast.next.next;
+                slow = slow.next;
+                if (fast == slow) {
                     return true;
                 }
-                nodes.add(head);
-                head = head.next;
             }
             return false;
-
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

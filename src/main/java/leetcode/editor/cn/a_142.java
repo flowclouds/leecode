@@ -57,8 +57,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.HashSet;
-
 public class a_142 {
     public static void main(String[] args) {
         a_142.Solution solution = new a_142().new Solution();
@@ -88,17 +86,33 @@ public class a_142 {
         }
     }
 
+
+    //slow 指针进入环后，又走了 b 的距离与 fast 相遇。此时，fast 指针已经走完了环的 n 圈，因此它走过的总距离为 a+n(b+c)+b=a+(n+1)b+nca+n(b+c)+b=a+(n+1)b+nc。
+    //根据题意，任意时刻fast指针走过的距离都为slow指针的2倍。因此，我们有
+    //
+    //a+(n+1)b+nc=2(a+b) \implies a=c+(n-1)(b+c)
+    //a+(n+1)b+nc=2(a+b)⟹a=c+(n−1)(b+c)
+    //
+    //有了 a=c+(n-1)(b+c)a=c+(n−1)(b+c) 的等量关系，我们会发现：从相遇点到入环点的距离加上 n-1 圈的环长，恰好等于从链表头部到入环点的距离。
+
     public class Solution {
         public ListNode detectCycle(ListNode head) {
-            HashSet<ListNode> nodes = new HashSet<>();
+            if (head == null) return null;
 
-            while (head != null) {
-
-                if (nodes.contains(head)) return head;
-
-                nodes.add(head);
-
-                head = head.next;
+            ListNode fast = head;
+            ListNode slow = head;
+            while (fast.next != null && fast.next.next != null) {
+                fast = fast.next.next;
+                slow = slow.next;
+                //确定连表上是否有环
+                if (fast == slow) {
+                    //slow和fast相遇的点走（n-1）*b的长度正好是 前部进入 环内的距离
+                    while (head != slow) {
+                        head = head.next;
+                        slow = slow.next;
+                    }
+                    return slow;
+                }
             }
             return null;
         }

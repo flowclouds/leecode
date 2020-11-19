@@ -26,16 +26,13 @@
 // Related Topics 数学 字符串 
 // 👍 509 👎 0
 
-
 package leetcode.editor.cn;
-
-import java.math.BigInteger;
 
 public class a_67 {
     public static void main(String[] args) {
         Solution solution = new a_67().new Solution();
-        String s = solution.addBinary("10100000100100110110010000010101111011011001101110111111111101000000101111001110001111100001101",
-                "110101001011101110001111100110001010100001101011101010000011011011001011101111001100000011011110011");
+        String s = solution.addBinary("1010",
+                "1011");
         System.out.println(s);
     }
 
@@ -43,9 +40,42 @@ public class a_67 {
     class Solution {
         public String addBinary(String a, String b) {
 
-            BigInteger ia = new BigInteger(a, 2);
-            BigInteger ib = new BigInteger(b, 2);
-            return ia.add(ib).toString(2);
+            int temp = 0;
+
+            int aLength = a.length() - 1;
+            int bLength = b.length() - 1;
+
+            StringBuilder sb = new StringBuilder();
+            while (aLength >= 0 || bLength >= 0) {
+                int aTemp = 0;
+                int bTemp = 0;
+                if (aLength >= 0) {
+                    aTemp = a.charAt(aLength) - '0';
+                }
+                if (bLength >= 0) {
+                    bTemp = b.charAt(bLength) - '0';
+                }
+
+                int sum = aTemp + bTemp + temp;
+                if (sum == 1) {
+                    temp = 0;
+                }
+                if (sum == 2) {
+                    sum = 0;
+                    temp = 1;
+                }
+                if (sum == 3) {
+                    sum = 1;
+                    temp = 1;
+                }
+                sb.insert(0, sum);
+                aLength--;
+                bLength--;
+            }
+            if (temp == 1) {
+                sb.insert(0, 1);
+            }
+            return sb.toString();
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

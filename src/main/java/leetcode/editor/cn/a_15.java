@@ -29,7 +29,7 @@ import java.util.List;
 public class a_15 {
     public static void main(String[] args) {
         Solution solution = new a_15().new Solution();
-        List<List<Integer>> lists = solution.threeSum(new int[]{1, -1, -1, 0});
+        List<List<Integer>> lists = solution.threeSum(new int[]{-1, 0, 1, 2, -1, -4});
         System.out.println(lists);
     }
 
@@ -41,27 +41,28 @@ public class a_15 {
 
             List<List<Integer>> res = new LinkedList<>();
             for (int i = 0; i < nums.length - 2; i++) {
-                if (nums[i] > 0) break;
-                //第一个数和上次不同
+                //保证第一个数不从复
                 if (i > 0 && nums[i] == nums[i - 1]) continue;
-                for (int j = i + 1; j < nums.length - 1; j++) {
-                    if (nums[i] + nums[j] > 0) break;
-                    //第二个数和上次不同
-                    if (j > i + 1 && nums[j] == nums[j - 1]) continue;
-
-                    int k = nums.length - 1;
-
-                    while (j < k && nums[i] + nums[k] + nums[j] > 0) {
-                        k--;
-                    }
-                    if (j == k) break;
-
-                    if (nums[i] + nums[j] + nums[k] == 0) {
-                        List<Integer> integers = new ArrayList<>();
-                        integers.add(nums[i]);
-                        integers.add(nums[j]);
-                        integers.add(nums[k]);
-                        res.add(integers);
+                else {
+                    int template = nums[i];
+                    //改为twosum求和
+                    int left = i + 1;
+                    int right = nums.length - 1;
+                    while (left < right) {
+                        if (left - 1 > i && nums[left] == nums[left - 1]) left++;
+                        else if (nums[left] + nums[right] + template < 0) {
+                            left++;
+                        } else if (nums[left] + nums[right] + template > 0) {
+                            right--;
+                        } else if (nums[left] + nums[right] == -template) {
+                            List<Integer> resItem = new ArrayList<>();
+                            resItem.add(template);
+                            resItem.add(nums[left]);
+                            resItem.add(nums[right]);
+                            res.add(resItem);
+                            left++;
+                            right--;
+                        }
                     }
                 }
             }

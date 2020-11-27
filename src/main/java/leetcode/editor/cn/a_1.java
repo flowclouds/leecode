@@ -29,6 +29,7 @@ public class a_1 {
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+    //尝试使用双指针解本题，本题入参数组无序 只能使用hash来做
     class Solution {
         public int[] twoSum(int[] nums, int target) {
             HashMap<Integer, Integer> map = new HashMap<>();
